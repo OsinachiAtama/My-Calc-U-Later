@@ -1,0 +1,20 @@
+class Cookie: 
+    def __init__(self,color): 
+        self.color = color
+
+    def get_color(self):
+        return self.color
+    
+    def set_color(self,color): 
+        self.color = color
+
+Cookie_one = Cookie('green')
+Cookie_two = Cookie('red')
+
+print('Cookie one is',Cookie_one.get_color())
+print('Cookie two is',Cookie_two.get_color())
+
+Cookie_one.set_color('yellow')
+
+print('\nCookie one is now',Cookie_one.get_color())
+print('Cookie two is still',Cookie_two.get_color())
