@@ -114,9 +114,121 @@ class LinkedList:
             self.tail = new_node
         self.length += 1
         return True
+    
+    def pop (self): 
+        temp = self.head # Container for the head
+        pre = self.head
+        
+        if self.length == 0 : # No value in list scenario
+            print('This linked list is empty')
+            return None
+              
+            
+        while temp.next is not None: # while there is more than one item on the list
+            pre = temp  #pre and temp are the same value
+            temp = temp.next # temp is now the next value
+        self.tail = pre # while loop has ended which means pre is now on the last value and temp is now on None
+        self.tail.next = None 
+        self.length -=1
+        if self.length == 0 : # this means that after the length of the ll was decreased once, there was nothing left so there is only one value in the list
+            self.head = None
+            self.tail = None
+        return temp
+    
+    def prepend(self, value): 
+        new_node = Node(value)   # making a node for the new value
+        if self.length == 0:  # empty list
+            self.head = new_node
+            self.tail = new_node
+        else: 
+            new_node.next = self.head #  attaching new node to linked list
+            self.head = new_node # declaring new node as head
+        self.length += 1    
+        return True
+    
+    def pop_first(self): 
+        if self.length == 0 : 
+            return None
+
+        temp = self.head # container
+        
+        self.head = self.head.next  # head is now next item on the list
+        temp.next = None # temp has been broken off
+        self.length -=1
+
+        if self.length == 0 : 
+            self.tail = None
+        return temp.value
+    
+    def get(self,index): # Will provide the value at the index
+        if (index < 0 or index >= self.length) :
+            return None
+        temp = self.head
+        for _ in range (index): #moves temp the number of times of the index to arrive at the right value
+            temp = temp.next
+        return temp
+
+    def set_value(self,index,value): # changes value at a given index 
+        #new_node = Node(value)
+        if (index < 0 or index >= self.length) : #you can use temp = self.get(index,  but I am too tired right now to make sense of that)
+            return "impossible, out of range"
+        temp = self.head
+        for _ in range (index): 
+            temp = temp.next 
+        temp.value = value
+        my_linked_list.print_list()
+        return True
+    
+    # def insert (self, index, value): 
+    #     new_node = Node(value)
+    #     temp = self.get(index)
+    #     if temp is not None: 
+    #         temp.next = new_node
+    #         if index == self.length - 1: 
+    #             new_node = self.tail
+    #             self.tail.next = None
+    #         return True
+    #     return False
+    
+    def insert (self, index, value): 
+        if (index < 0 or index >= self.length) :
+            return None
+        if index == 0: 
+            return self.prepend(value)
+        if index == self.length : 
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index-1)
+        new_node.next = temp.next 
+        temp.next = new_node 
+        self.length +=1 
+        return True
+
+        
+
+            
 
 my_linked_list = LinkedList(1)
 
 my_linked_list.append(2)
 
+#my_linked_list.print_list()
+
+# print(my_linked_list.pop())
+# print(my_linked_list.pop())
+# print(my_linked_list.pop())
+
+my_linked_list.prepend(8)
+# print(my_linked_list.pop_first())
+# print(my_linked_list.pop_first())
+# print(my_linked_list.pop_first())
+# print(my_linked_list.pop_first())
+# print(my_linked_list.pop_first())
+# print(my_linked_list.pop_first())
+
+#my_linked_list.print_list()
+
+print(my_linked_list.get(2))
+my_linked_list.set_value(2,10)
+my_linked_list.insert(2,15)
 my_linked_list.print_list()
