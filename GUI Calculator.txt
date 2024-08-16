@@ -1,37 +1,145 @@
 import tkinter as tk 
+import math
+
+root = tk.Tk()
+root.geometry("300x350")
 
 calculation = ""
 
 def add_to_calculation(symbol): 
-    global calculation
-    calculation += str(symbol)
-    text_result.delete(1.0, "end")
-    text_result.insert(1.0, calculation)
+    current = entry.get()
+    entry.delete(0, tk.END)
+    entry.insert(0, current + str(symbol))
 
 
 def evaluate_calculation(): 
-    global calculation
     try: 
-        calculation = str(eval(calculation))
-        text_result.delete(1.0, "end")
-        text_result.insert(1.0, calculation)
+        solution = eval(entry.get())
+        entry.delete(0, tk.END)
+        entry.insert(0, str(solution))
 
     except:
         clear_field()
-        text_result.insert(1.0, "Error")
-    pass
+        entry.insert(0, "Error")
+  
 
 def clear_field(): 
-    global calculation
-    calculation = ""
-    text_result.delete(1.0, "end")
+    entry.delete(0, tk.END)
 
+
+
+entry = tk.Entry(root, width = 16, font = ('Arial', 24), borderwidth = 3)
+entry.grid(columnspan = 5)
+
+def sin_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.sin(math.radians(float(value))) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+    
+    pass
+
+def cos_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.cos(math.radians(float(value))) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+    
+    pass
+
+def tan_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.tan(math.radians(float(value))) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+    
+    pass
+
+def arcsin_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.degrees(math.asin(value)) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+    
+    pass
    
-root = tk.Tk()
-root.geometry("350x300")
+def arccos_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.degrees(math.acos(value)) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+    
+    pass
+   
+def arctan_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.degrees(math.atan(value)) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+    
+    pass
 
-text_result = tk.Text(root, height = 2, width = 16, font = ("Arial", 24))
-text_result.grid(columnspan = 5)
+def square_function(): 
+    try: 
+        value = float(entry.get())
+        result = value**2
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+
+    pass
+
+def sqrt_function(): 
+    try: 
+        value = float(entry.get())
+        result = math.sqrt(value)
+        entry.delete(0,tk.END)
+        entry.insert(0,str(result))
+    
+    except: 
+       entry.delete(0, tk.END)
+       entry.insert(0,"Error")
+
+    pass
+
+
+
+
+# text_result = tk.Text(root, height = 2, width = 16, font = ("Arial", 24))
+# text_result.grid(columnspan = 5)
 
 btn_1 = tk.Button(root, text = "1", command = lambda: add_to_calculation(1), width = 5, font = ("Arial", 14))
 btn_1.grid(row = 2, column = 1)
@@ -82,8 +190,37 @@ btn_divide = tk.Button(root, text = "/", command = lambda: add_to_calculation("/
 btn_divide.grid(row = 5, column = 4)
 
 btn_equal = tk.Button(root, text = "=", command = evaluate_calculation, width = 5, font = ("Arial", 14))
-btn_equal.grid(row = 6, column = 1, columnspan = 2)
+btn_equal.grid(row = 6, column = 4)
 
-btn_clear = tk.Button(root, text = "C", command = clear_field, width = 5, font = ("Arial", 14))
-btn_clear.grid(row = 6, column = 3, columnspan = 1)
+btn_clear = tk.Button(root, text = "A/C", command = clear_field, width = 5, font = ("Arial", 14))
+btn_clear.grid(row = 6, column = 1, columnspan= 2)
+
+btn_dot = tk.Button(root, text = ".", command = lambda: add_to_calculation("."), width = 5, font = ("Arial", 14))
+btn_dot.grid(row = 6, column = 3)
+
+btn_sine = tk.Button(root, text = "sin", command = sin_function, width = 5, font = ("Arial", 14))
+btn_sine.grid(row = 7, column = 1)
+
+btn_cos = tk.Button(root, text = "cos", command = cos_function, width = 5, font = ("Arial", 14))
+btn_cos.grid(row = 7, column = 2) 
+
+btn_tan = tk.Button(root, text = "tan", command = tan_function, width = 5, font = ("Arial", 14))
+btn_tan.grid(row = 7, column = 3)
+
+btn_sq = tk.Button(root, text = "x²", command = square_function, width = 5, font = ("Arial", 14))
+btn_sq.grid(row = 7, column = 4)
+
+btn_asine = tk.Button(root, text = "arcsin", command = arcsin_function, width = 5, font = ("Arial", 14))
+btn_asine.grid(row = 8, column = 1)
+
+btn_acos = tk.Button(root, text = "arccos", command = arccos_function, width = 5, font = ("Arial", 14))
+btn_acos.grid(row = 8, column = 2)
+
+btn_atan = tk.Button(root, text = "arctan", command = arctan_function, width = 5, font = ("Arial", 14))
+btn_atan.grid(row = 8, column = 3)
+
+btn_sqrt = tk.Button(root, text = "√x", command = sqrt_function, width = 5, font = ("Arial", 14))
+btn_sqrt.grid(row = 8, column = 4)
+
+
 root.mainloop()
