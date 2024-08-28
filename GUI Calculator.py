@@ -4,7 +4,7 @@ import math
 
 root = tk.Tk()
 style = ttk.Style(root)
-style.theme_use('clam')
+
 root.configure(bg = "black")
 root.geometry("350x420")
 
@@ -38,7 +38,7 @@ entry.grid(columnspan = 5, padx = 20, pady = 20)
 def sin_function(): 
     try: 
         value = float(entry.get())
-        result = math.sin(math.radians(float(value))) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        result = math.sin(math.radians(float(value))) #math.radians converts the angle from degrees to radians because the sine function expects the input in radians  
         entry.delete(0,tk.END)
         entry.insert(0,str(result))
     
@@ -51,7 +51,7 @@ def sin_function():
 def cos_function(): 
     try: 
         value = float(entry.get())
-        result = math.cos(math.radians(float(value))) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        result = math.cos(math.radians(float(value))) #math.radians converts the angle from degrees to radians because the sine function expects the input in radians  
         entry.delete(0,tk.END)
         entry.insert(0,str(result))
     
@@ -64,7 +64,7 @@ def cos_function():
 def tan_function(): 
     try: 
         value = float(entry.get())
-        result = math.tan(math.radians(float(value))) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        result = math.tan(math.radians(float(value))) #math.radians converts the angle from degrees to radians because the sine function expects the input in radians  
         entry.delete(0,tk.END)
         entry.insert(0,str(result))
     
@@ -77,7 +77,7 @@ def tan_function():
 def arcsin_function(): 
     try: 
         value = float(entry.get())
-        result = math.degrees(math.asin(value)) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        result = math.degrees(math.asin(value)) #math.radians converts the angle from degrees to radians because the sine function expects the input in radians  
         entry.delete(0,tk.END)
         entry.insert(0,str(result))
     
@@ -90,7 +90,7 @@ def arcsin_function():
 def arccos_function(): 
     try: 
         value = float(entry.get())
-        result = math.degrees(math.acos(value)) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        result = math.degrees(math.acos(value)) #math.radians converts the angle from degrees to radians because the sine function expects the input in radians  
         entry.delete(0,tk.END)
         entry.insert(0,str(result))
     
@@ -103,7 +103,7 @@ def arccos_function():
 def arctan_function(): 
     try: 
         value = float(entry.get())
-        result = math.degrees(math.atan(value)) #math.radians converts the angle from degrees from angle to radians because the sine function expects the input in radians  
+        result = math.degrees(math.atan(value)) #math.radians converts the angle from degrees to radians because the sine function expects the input in radians  
         entry.delete(0,tk.END)
         entry.insert(0,str(result))
     
@@ -142,13 +142,9 @@ def sqrt_function():
 
 
 
-#circle = tk.PhotoImage(file = 'button_bg.png')
-
-# text_result = tk.Text(root, height = 2, width = 16, font = ("Arial", 24))
-# text_result.grid(columnspan = 5)
-
 bstyle = {'font': ('Courier', 14), 'bg':'black', 'fg':'white'}
 
+#Attaching functions and commands to buttons
 
 btn_1 = tk.Button(root, text = "1", command = lambda: add_to_calculation(1), width = 5, **bstyle )
 btn_1.grid(row = 2, column = 1, padx = 5, pady = 5)
@@ -180,6 +176,8 @@ btn_9.grid(row = 4, column = 3, padx = 5, pady = 5)
 btn_0 = tk.Button(root, text = "0", command = lambda: add_to_calculation(0), width = 5, **bstyle )
 btn_0.grid(row = 5, column = 1, padx = 5, pady = 5)
 
+#Attaching operand buttons to functions
+
 btn_plus = tk.Button(root, text = "+", command = lambda: add_to_calculation("+"), width = 5,**bstyle )
 btn_plus.grid(row = 2, column = 4, padx = 5, pady = 5)
 
@@ -198,6 +196,7 @@ btn_cbracket.grid(row = 5, column = 3, padx = 5, pady = 5)
 btn_divide = tk.Button(root, text = "/", command = lambda: add_to_calculation("/"), width = 5, **bstyle )
 btn_divide.grid(row = 5, column = 4, padx = 5, pady = 5)
 
+#Attaching trig functions to buttons
 btn_sine = tk.Button(root, text = "sin", command = sin_function, width = 5, **bstyle )
 btn_sine.grid(row = 6, column = 1, padx = 5, pady = 5)
 
